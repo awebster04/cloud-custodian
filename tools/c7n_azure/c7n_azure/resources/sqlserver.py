@@ -17,6 +17,7 @@ AZURE_SERVICES = IPRange('0.0.0.0', '0.0.0.0')  # nosec
 log = logging.getLogger('custodian.azure.sql-server')
 
 
+@resources.register('sql-server', aliases=['sqlserver'])
 class SqlServer(ArmResourceManager):
     """SQL Server Resource
 
@@ -297,6 +298,7 @@ class SqlServerFirewallBypassFilter(FirewallBypassFilter):
             if r.start_ip_address == '0.0.0.0' and r.end_ip_address == '0.0.0.0':  # nosec
                 return ['AzureServices']
         return []
+
 
 @SqlServer.action_registry.register('set-firewall-rules')
 class SqlSetFirewallAction(SetFirewallAction):
