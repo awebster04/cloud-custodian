@@ -7,7 +7,7 @@ from c7n_azure.actions.firewall import SetFirewallAction
 from c7n_azure.filters import FirewallRulesFilter, FirewallBypassFilter
 from c7n_azure.provider import resources
 from c7n_azure.resources.arm import ArmResourceManager
-from c7n_azure.utils import ThreadHelper, StringUtils
+from c7n_azure.utils import ThreadHelper
 from netaddr import IPRange, IPSet, IPNetwork, IPAddress
 
 from c7n.utils import type_schema
@@ -207,6 +207,7 @@ class VulnerabilityAssessmentFilter(Filter):
 
         return result
 
+
 @SqlServer.filter_registry.register('extended-auditing-policy')
 class ExtendedAuditingFilter(ValueFilter):
     """
@@ -245,6 +246,7 @@ class ExtendedAuditingFilter(ValueFilter):
                 resource['properties'][key] = {}
 
         return super(ExtendedAuditingFilter, self).__call__(resource['properties'][key])
+
 
 @SqlServer.filter_registry.register('firewall-rules')
 class SqlServerFirewallRulesFilter(FirewallRulesFilter):
